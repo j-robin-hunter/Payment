@@ -1,6 +1,6 @@
 {
   "name": "rtech/payment",
-  "description": "Roma Technology Ltd payment module",
+  "description": "Romatech Payment Module",
   "type": "magento2-module",
   "license": "MIT",
   "authors": [
@@ -10,7 +10,11 @@
     }
   ],
   "require": {
-    "rtech/neo": "^1.0"
+    "rtech/neo": "^1.0",
+    "magento/module-payment": "100.1.*",
+    "magento/module-checkout": "100.1.*",
+    "magento/module-sales": "100.1.*",
+    "stripe/stripe-php": "^6.36.0"
   },
   "autoload": {
     "files": [ "registration.php" ],
