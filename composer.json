@@ -13,8 +13,7 @@
     "rtech/neo": "^1.0",
     "magento/module-payment": "100.1.*",
     "magento/module-checkout": "100.1.*",
-    "magento/module-sales": "100.1.*",
-    "stripe/stripe-php": "^6.36.0"
+    "magento/module-sales": "100.1.*"
   },
   "autoload": {
     "files": [ "registration.php" ],
