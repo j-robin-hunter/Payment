@@ -1,0 +1,20 @@
+<!--
+/**
+ * Copyright 2018 © Roma Technology Ltd. All rights reserved.
+ * See COPYING.txt for license details.
+ **/
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+  <table name="rtech_payment_terms" resource="default" engine="innodb" comment="Payment Terms">
+    <column xsi:type="int" name="terms_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Terms ID"/>
+    <column xsi:type="varchar" name="terms_name" nullable="false" length="64" comment="Terms Name"/>
+    <column xsi:type="varchar" name="terms" nullable="false" length="512" comment="Terms Text"/>
+    <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+    <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="true" default="CURRENT_TIMESTAMP" comment="Updated Time"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="terms_id"/>
+    </constraint>
+  </table>
+
+</schema>

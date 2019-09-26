@@ -30,6 +30,14 @@
                                     </item>
                                   </item>
                                 </item>
+                                <item name="terms" xsi:type="array">
+                                  <item name="component" xsi:type="string">RTech_Payment/js/view/payment/terms-payment</item>
+                                  <item name="methods" xsi:type="array">
+                                    <item name="terms" xsi:type="array">
+                                      <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+                                    </item>
+                                  </item>
+                                </item>
                               </item>
                             </item>
                           </item>

@@ -16,6 +16,14 @@
         <allowspecific>0</allowspecific>
         <group>offline</group>
       </olev>
+      <terms>
+        <active>0</active>
+        <model>RTech\Payment\Model\PaymentTerms</model>
+        <order_status>pending</order_status>
+        <title>Romatech Invoiced Payment</title>
+        <allowspecific>0</allowspecific>
+        <group>offline</group>
+      </terms>
     </payment>
   </default>
 </config>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+* Copyright 2018 © Roma Technology Ltd. All rights reserved.
+* See COPYING.txt for license details.
+**/
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+  <argument name="data" xsi:type="array">
+    <item name="js_config" xsi:type="array">
+      <item name="provider" xsi:type="string">terms.terms_payment_data_source</item>
+      <item name="deps" xsi:type="string">terms.terms_payment_data_source</item>
+    </item>
+    <item name="spinner" xsi:type="string">terms_columns</item>
+    <item name="buttons" xsi:type="array">
+      <item name="add" xsi:type="array">
+        <item name="name" xsi:type="string">add</item>
+        <item name="label" xsi:type="string" translate="true">Add Payment Terms</item>
+        <item name="class" xsi:type="string">primary</item>
+        <item name="url" xsi:type="string">*/*/add</item>
+      </item>
+    </item>
+  </argument>
+
+  <dataSource name="terms_payment_data_source">
+    <argument name="dataProvider" xsi:type="configurableObject">
+      <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+      <argument name="name" xsi:type="string">terms_payment_data_source</argument>
+      <argument name="primaryFieldName" xsi:type="string">terms_id</argument>
+      <argument name="requestFieldName" xsi:type="string">terms_id</argument>
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+          <item name="update_url" xsi:type="url" path="mui/index/render"/>
+          <item name="storageConfig" xsi:type="array">
+            <item name="indexField" xsi:type="string">terms_id</item>
+          </item>
+        </item>
+      </argument>
+    </argument>
+  </dataSource>
+
+  <container name="listing_top">
+    <argument name="data" xsi:type="array">
+      <item name="config" xsi:type="array">
+        <item name="template" xsi:type="string">ui/grid/toolbar</item>
+      </item>
+    </argument>
+    <paging name="listing_paging">
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="storageConfig" xsi:type="array">
+            <item name="provider" xsi:type="string">attachments.listing_top.bookmarks</item>
+            <item name="namespace" xsi:type="string">current.paging</item>
+          </item>
+          <item name="selectProvider" xsi:type="string">attachments.attachment_columns.ids</item>
+          <item name="displayArea" xsi:type="string">bottom</item>
+          <item name="options" xsi:type="array">
+            <item name="20" xsi:type="array">
+              <item name="value" xsi:type="number">20</item>
+              <item name="label" xsi:type="string" translate="true">20</item>
+            </item>
+            <item name="30" xsi:type="array">
+              <item name="value" xsi:type="number">30</item>
+              <item name="label" xsi:type="string" translate="true">30</item>
+            </item>
+            <item name="50" xsi:type="array">
+              <item name="value" xsi:type="number">50</item>
+              <item name="label" xsi:type="string" translate="true">50</item>
+            </item>
+            <item name="100" xsi:type="array">
+              <item name="value" xsi:type="number">100</item>
+              <item name="label" xsi:type="string" translate="true">100</item>
+            </item>
+            <item name="200" xsi:type="array">
+              <item name="value" xsi:type="number">200</item>
+              <item name="label" xsi:type="string" translate="true">200</item>
+            </item>
+          </item>
+        </item>
+      </argument>
+    </paging>
+
+    <massaction name="listing_massaction">
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="selectProvider" xsi:type="string">terms.terms.terms_columns.ids</item>
+          <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+          <item name="indexField" xsi:type="string">terms_id</item>
+        </item>
+      </argument>
+      <action name="delete">
+        <argument name="data" xsi:type="array">
+          <item name="config" xsi:type="array">
+            <item name="type" xsi:type="string">delete</item>
+            <item name="label" xsi:type="string" translate="true">Delete</item>
+            <item name="url" xsi:type="url" path="*/*/massDelete"/>
+            <item name="confirm" xsi:type="array">
+              <item name="title" xsi:type="string" translate="true">Delete items</item>
+              <item name="message" xsi:type="string" translate="true">Are you sure to delete selected payment terms?</item>
+            </item>
+          </item>
+        </argument>
+      </action>
+    </massaction>
+
+  </container>
+
+  <columns name="terms_columns">
+    <selectionsColumn name="ids">
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="resizeEnabled" xsi:type="boolean">true</item>
+          <item name="resizeDefaultWidth" xsi:type="string">55</item>
+          <item name="indexField" xsi:type="string">terms_id</item>
+        </item>
+      </argument>
+    </selectionsColumn>
+
+    <column name="terms_id">
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="filter" xsi:type="string">textRange</item>
+          <item name="sorting" xsi:type="string">asc</item>
+          <item name="label" xsi:type="string" translate="true">ID</item>
+        </item>
+      </argument>
+    </column>
+
+    <column name="terms_name">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">Name</item>
+          <item name="resizeEnabled" xsi:type="boolean">true</item>
+          <item name="resizeDefaultWidth" xsi:type="string">100</item>
+        </item>
+			</argument>
+		</column>
+
+    <column name="terms">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">Terms</item>
+          <item name="resizeEnabled" xsi:type="boolean">true</item>
+          <item name="resizeDefaultWidth" xsi:type="string">100</item>
+        </item>
+			</argument>
+		</column>
+
+    <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date">
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+					<item name="resizeEnabled" xsi:type="boolean">false</item>
+					<item name="resizeDefaultWidth" xsi:type="string">10</item>
+          <item name="filter" xsi:type="string">dateRange</item>
+          <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+          <item name="dataType" xsi:type="string">date</item>
+          <item name="label" xsi:type="string" translate="true">Updated</item>
+          <item name="dateFormat" xsi:type="string">Y-MM-dd HH:mm:ss</item>
+        </item>
+      </argument>
+    </column>
+
+		<actionsColumn name="actions" class="RTech\Payment\Ui\Component\Listing\Column\PostActions">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="resizeEnabled" xsi:type="boolean">false</item>
+					<item name="resizeDefaultWidth" xsi:type="string">10</item>
+					<item name="indexField" xsi:type="string">terms_id</item>
+				</item>
+			</argument>
+		</actionsColumn>
+
+  </columns>
+</listing>

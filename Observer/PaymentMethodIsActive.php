@@ -7,24 +7,28 @@ namespace RTech\Payment\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
 use RTech\Payment\Model\Olev;
+use RTech\Payment\Model\PaymentTerms;
 
 class PaymentMethodIsActive implements ObserverInterface {
+
   protected $_productRepository;
   protected $_configData;
   protected $_storeId;
+  protected $_customerSession;
 
   public function __construct(
     \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
     \RTech\Payment\Helper\ConfigData $configData,
-    \Magento\Store\Model\StoreManagerInterface $storeManager
+    \Magento\Store\Model\StoreManagerInterface $storeManager,
+    \Magento\Customer\Model\Session $customerSession
   ) {
     $this->_productRepository = $productRepository;
     $this->_configData = $configData;
     $this->_storeId = $storeManager->getStore()->getId();
+    $this->_customerSession = $customerSession;
   }
 
   public function execute(\Magento\Framework\Event\Observer $observer) {
-
     $method_instance = $observer->getEvent()->getMethodInstance()->getCode();
     $result = $observer->getEvent()->getResult();
     $quote = $observer->getEvent()->getQuote();
@@ -44,10 +48,23 @@ class PaymentMethodIsActive implements ObserverInterface {
           $result->setData('is_available', false);
         }
       } else {
-        if ($observer->getEvent()->getMethodInstance()->getCode() == Olev::PAYMENT_METHOD_OLEV_CODE) {
-          $result->setData('is_available', false);
-        } else {
-          $result->setData('is_available', true);
+        switch ($observer->getEvent()->getMethodInstance()->getCode()) {
+          case Olev::PAYMENT_METHOD_OLEV_CODE:
+            $result->setData('is_available', false);
+            break;
+          case PaymentTerms::PAYMENT_METHOD_TERMS_CODE:
+            $available = false;
+            if ($this->_customerSession->isLoggedIn()) {
+              $customer = $this->_customerSession->getCustomer()->getDataModel();
+              if ($customer->getCustomAttribute('payment_terms')) {
+                $available = true;
+              }
+            }
+            $result->setData('is_available', $available);
+            break;
+          default:
+            $result->setData('is_available', true);
+            break;
         }
       }
     }
