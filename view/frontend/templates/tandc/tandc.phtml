@@ -1,0 +1,23 @@
+<?php
+/**
+* Copyright © 2019 Roma Technology Limited. All rights reserved.
+* See COPYING.txt for license details.
+*/
+?>
+<?php if (!$block->getAgreements()) {
+  return;
+} ?>
+<ol class="agreements items">
+  <?php foreach ($block->getAgreements() as $agreement): ?>
+  <li class="item">
+    <h4><?= $agreement->getName() ?></h4>
+    <p>
+    <?php if ($agreement->getIsHtml()):?>
+    <?= /* @escapeNotVerified */ $agreement->getContent() ?>
+    <?php else:?>
+    <?= nl2br($block->escapeHtml($agreement->getContent())) ?>
+    <?php endif; ?>
+    </p>
+  </li>
+  <?php endforeach ?>
+</ol>
