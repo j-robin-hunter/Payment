@@ -8,6 +8,7 @@ namespace RTech\Payment\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use RTech\Payment\Model\Olev;
 use RTech\Payment\Model\PaymentTerms;
+use RTech\Zoho\Webservice\Client\ZohoBooksClient;
 
 class PaymentMethodIsActive implements ObserverInterface {
 
@@ -20,12 +21,17 @@ class PaymentMethodIsActive implements ObserverInterface {
     \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
     \RTech\Payment\Helper\ConfigData $configData,
     \Magento\Store\Model\StoreManagerInterface $storeManager,
-    \Magento\Customer\Model\Session $customerSession
+    \Magento\Customer\Model\Session $customerSession,
+    \RTech\Zoho\Helper\ConfigData $zohoConfigData,
+    \Zend\Http\Client $zendClient,
+    \RTech\Zoho\Model\ZohoCustomerRepository $zohoCustomerRepository
   ) {
     $this->_productRepository = $productRepository;
     $this->_configData = $configData;
     $this->_storeId = $storeManager->getStore()->getId();
     $this->_customerSession = $customerSession;
+    $this->_zohoClient = new ZohoBooksClient($zohoConfigData, $zendClient, $storeManager);
+    $this->_zohoCustomerRepository = $zohoCustomerRepository;
   }
 
   public function execute(\Magento\Framework\Event\Observer $observer) {
@@ -54,12 +60,16 @@ class PaymentMethodIsActive implements ObserverInterface {
             break;
           case PaymentTerms::PAYMENT_METHOD_TERMS_CODE:
             $available = false;
-            if ($this->_customerSession->isLoggedIn()) {
-              $customer = $this->_customerSession->getCustomer()->getDataModel();
-              if ($customer->getCustomAttribute('payment_terms')) {
-                $available = true;
+            $customer = $observer->getQuote()->getCustomer();
+              try {
+                $zohoCustomerId = $this->_zohoCustomerRepository->getById($customer->getId())->getZohoId();
+                $paymentTerms = $this->_zohoClient->getContact($zohoCustomerId)['payment_terms'] ?? 0;
+                if ($paymentTerms > 0) {
+                  $available = true;
+                }
+              } catch (\Exception $e) {
+                // Ignore and do not enable payment method
               }
-            }
             $result->setData('is_available', $available);
             break;
           default:

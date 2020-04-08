@@ -17,7 +17,7 @@
         </field>
         <field id="order_status" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
           <label>New Order Status</label>
-          <source_model>Magento\Sales\Model\Config\Source\Order\Status\NewStatus</source_model>
+          <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
         </field>
         <field id="title" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
           <label>Title</label>
@@ -49,7 +49,7 @@
         </field>
         <field id="order_status" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
           <label>New Order Status</label>
-          <source_model>Magento\Sales\Model\Config\Source\Order\Status\NewStatus</source_model>
+          <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
         </field>
         <field id="title" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
           <label>Title</label>
@@ -62,6 +62,9 @@
           <label>Payment from Specific Countries</label>
           <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
           <can_be_empty>1</can_be_empty>
+        </field>
+        <field id="information" translate="label" type="textarea" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Payment Terms Information</label>
         </field>
       </group>
 

@@ -18,8 +18,8 @@
     <!-- ko foreach: getRegion('messages') -->
     <!-- ko template: getTemplate() --><!-- /ko -->
     <!--/ko-->
-    <p data-bind="html: getInformation()"></p>
     <div class="checkout-agreements-block">
+      <p data-bind="html: getInformation()"></p>
       <!-- ko foreach: $parent.getRegion('before-place-order') -->
       <!-- ko template: getTemplate() --><!-- /ko -->
       <!--/ko-->

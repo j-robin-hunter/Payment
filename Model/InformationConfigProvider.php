@@ -39,6 +39,6 @@ class InformationConfigProvider implements ConfigProviderInterface {
   }
 
   protected function getInformation($code) {
-    return nl2br($this->escaper->escapeHtml($this->methods[$code]->getInformation()));
+    return $this->methods[$code]->getInformation();
   }
 }

@@ -5,15 +5,15 @@
 */
 namespace RTech\Payment\Block\Form;
 
-class Olev extends \Magento\Payment\Block\Form {
+class Terms extends \Magento\Payment\Block\Form {
 
-  protected $_template = 'RTech_Payment::form/olev.phtml';
+  protected $_template = 'RTech_Payment::form/terms.phtml';
   protected $_information;
 
   public function getInstructions() {
     if ($this->_information === null) {
       $method = $this->getMethod();
-      $this->_information = $method->getConfigData('olevinformation');
+      $this->_information = $method->getConfigData('termsinformation');
     }
     return $this->_information;
   }

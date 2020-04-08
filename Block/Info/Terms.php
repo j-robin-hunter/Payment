@@ -5,9 +5,9 @@
 */
 namespace RTech\Payment\Block\Info;
 
-class Information extends \Magento\Payment\Block\Info {
+class Terms extends \Magento\Payment\Block\Info {
   protected $_information;
-  protected $_template = 'RTech_Payment::info/information.phtml';
+  protected $_template = 'RTech_Payment::terms/information.phtml';
 
   public function getInstructions() {
     if ($this->_information === null) {
