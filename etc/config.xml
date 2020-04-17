@@ -18,11 +18,12 @@
       </olev>
       <terms>
         <active>0</active>
-        <model>RTech\Payment\Model\PaymentTerms</model>
+        <model>RTech\Payment\Model\Terms</model>
         <order_status>pending</order_status>
         <title>Romatech Invoiced Payment</title>
         <allowspecific>0</allowspecific>
         <group>offline</group>
+        <can_use_internal>1</can_use_internal>
       </terms>
     </payment>
   </default>

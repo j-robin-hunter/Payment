@@ -3,8 +3,9 @@
 * See COPYING.txt for license details.
 **/
 define([
-  'Magento_Checkout/js/view/payment/default'
-], function (Component) {
+  'Magento_Checkout/js/view/payment/default',
+  'Magento_Customer/js/customer-data'
+], function (Component, customerData) {
   'use strict';
 
   return Component.extend({

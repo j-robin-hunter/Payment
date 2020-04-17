@@ -7,7 +7,7 @@ namespace RTech\Payment\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
 use RTech\Payment\Model\Olev;
-use RTech\Payment\Model\PaymentTerms;
+use RTech\Payment\Model\Terms;
 use RTech\Zoho\Webservice\Client\ZohoBooksClient;
 
 class PaymentMethodIsActive implements ObserverInterface {
@@ -58,7 +58,7 @@ class PaymentMethodIsActive implements ObserverInterface {
           case Olev::PAYMENT_METHOD_OLEV_CODE:
             $result->setData('is_available', false);
             break;
-          case PaymentTerms::PAYMENT_METHOD_TERMS_CODE:
+          case Terms::PAYMENT_METHOD_TERMS_CODE:
             $available = false;
             $customer = $observer->getQuote()->getCustomer();
               try {

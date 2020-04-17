@@ -9,4 +9,7 @@
   <event name="payment_method_is_active">
     <observer name="rtech_payment_method_is_active" instance="RTech\Payment\Observer\PaymentMethodIsActive"/>
   </event>
+  <event name="checkout_submit_all_after">
+    <observer name="rtech_checkout_submit_all_after" instance="RTech\Payment\Observer\CheckoutSubmitAllAfter" />
+  </event>
 </config>

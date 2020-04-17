@@ -13,7 +13,7 @@ class Olev extends \Magento\Payment\Block\Form {
   public function getInstructions() {
     if ($this->_information === null) {
       $method = $this->getMethod();
-      $this->_information = $method->getConfigData('olevinformation');
+      $this->_information = $method->getConfigData('information');
     }
     return $this->_information;
   }
