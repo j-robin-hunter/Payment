@@ -10,7 +10,7 @@ class Olev extends \Magento\Payment\Model\Method\AbstractMethod {
 
   protected $_code = self::PAYMENT_METHOD_OLEV_CODE;
   protected $_formBlockType = \RTech\Payment\Block\Form\Olev::class;
-  protected $_infoBlockType = \RTech\Payment\Block\Info\Information::class;
+  protected $_infoBlockType = \RTech\Payment\Block\Info\Olev::class;
   protected $_isOffline = true;
 
   public function getInformation() {

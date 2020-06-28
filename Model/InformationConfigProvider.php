@@ -14,6 +14,7 @@ class InformationConfigProvider implements ConfigProviderInterface {
   protected $methodCodes = [
     Olev::PAYMENT_METHOD_OLEV_CODE,
     Terms::PAYMENT_METHOD_TERMS_CODE,
+    Estimate::PAYMENT_METHOD_ESTIMATE_CODE,
   ];
   protected $methods = [];
   protected $escaper;

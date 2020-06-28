@@ -19,5 +19,11 @@
                 <argument name="template" xsi:type="string">RTech_Payment::form/terms.phtml</argument>
             </action>
         </referenceBlock>
+        <referenceBlock name="order.create.billing.method.form">
+            <action method="setMethodFormTemplate">
+                <argument name="method" xsi:type="string">estimate</argument>
+                <argument name="template" xsi:type="string">RTech_Payment::form/estimate.phtml</argument>
+            </action>
+        </referenceBlock>
     </body>
 </page>

@@ -38,6 +38,14 @@
                                     </item>
                                   </item>
                                 </item>
+                                <item name="estimate" xsi:type="array">
+                                  <item name="component" xsi:type="string">RTech_Payment/js/view/payment/estimate-payment</item>
+                                  <item name="methods" xsi:type="array">
+                                    <item name="olev" xsi:type="array">
+                                      <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+                                    </item>
+                                  </item>
+                                </item>                                
                               </item>
                             </item>
                           </item>

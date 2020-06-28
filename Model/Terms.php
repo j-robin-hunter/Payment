@@ -16,9 +16,4 @@ class Terms extends \Magento\Payment\Model\Method\AbstractMethod {
   public function getInformation() {
     return $this->getConfigData('information');
   }
-
-  public function test() {
-    $b = $c;
-    return 'test';
-  }
 }

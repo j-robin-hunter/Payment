@@ -1,15 +1,14 @@
 <?php
 /**
-* Copyright © 2019 Roma Technology Limited. All rights reserved.
-* See COPYING.txt for license details.
-*/
-namespace RTech\Payment\Observer;
+ * Copyright © 2019 Roma Technology Limited. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+namespace RTech\Payment\Plugin;
 
-use Magento\Framework\Event\ObserverInterface;
 use RTech\Payment\Model\Terms;
 use RTech\Zoho\Webservice\Client\ZohoBooksClient;
 
-class CheckoutSubmitAllAfter implements ObserverInterface {
+class CreditLimitZohoPlugin {
 
   protected $zohoClient;
   protected $zohoCustomerRepository;
@@ -30,8 +29,12 @@ class CheckoutSubmitAllAfter implements ObserverInterface {
     $this->messageManager = $messageManager;
   }
 
-  public function execute(\Magento\Framework\Event\Observer $observer) {
-    $order = $observer->getOrder();
+  public function afterExecute (
+    \Magento\Checkout\Controller\Onepage\Success $subject,
+    \Magento\Framework\Controller\ResultInterface $result
+  ) {
+    $session = $subject->getOnepage()->getCheckout();
+    $order = $session->getLastRealOrder();
     try {
       if ($order->getPayment()->getMethodInstance()->getCode() == Terms::PAYMENT_METHOD_TERMS_CODE) {
         $customerId = $order->getCustomerId();
@@ -47,6 +50,9 @@ class CheckoutSubmitAllAfter implements ObserverInterface {
       }
     } catch (\Exception $e) {
       $this->messageManager->addError(__('Unable to get credit information: %1', $e->getMessage()));
-    }
+    }    
+
+    return $result;
   }
+
 }
