@@ -25,16 +25,6 @@
         <group>offline</group>
         <can_use_internal>1</can_use_internal>
       </terms>
-      <estimate>
-        <active>0</active>
-        <model>RTech\Payment\Model\Estimate</model>
-        <order_status>pending</order_status>
-        <title>Romatech Estimate</title>
-        <allowspecific>0</allowspecific>
-        <group>offline</group>
-        <can_use_internal>1</can_use_internal>
-        <can_use_checkout>0</can_use_checkout>
-      </estimate>
     </payment>
   </default>
 </config>
